@@ -128,38 +128,453 @@
   }
 }
 
+/* ====== KEYFRAME ANIMATIONS ====== */
 @keyframes float-slow {
   0%, 100% { transform: translateY(0) translateX(0); }
   50% { transform: translateY(-30px) translateX(20px); }
 }
+
 @keyframes float-slower {
   0%, 100% { transform: translateY(0) translateX(0); }
   50% { transform: translateY(25px) translateX(-25px); }
 }
+
 @keyframes pulse-glow {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.75; }
 }
+
 @keyframes gradient-shift {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-1deg); }
+  75% { transform: rotate(1deg); }
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  14% { transform: scale(1.1); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.1); }
+  70% { transform: scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+/* ====== ANIMATION UTILITY CLASSES ====== */
 .animate-float-slow { animation: float-slow 12s ease-in-out infinite; }
 .animate-float-slower { animation: float-slower 16s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
 .animate-fade-up { animation: fade-up 0.7s ease-out both; }
 .animate-marquee { animation: marquee 28s linear infinite; }
 
+/* New animation utilities */
+.animate-fade-in { animation: fadeIn 0.3s ease-out; }
+.animate-fade-in-lg { animation: fadeIn 0.5s ease-out; }
+.animate-slide-in { animation: slideIn 0.3s ease-out; }
+.animate-slide-in-lg { animation: slideIn 0.5s ease-out; }
+.animate-slide-in-left { animation: slideInLeft 0.4s ease-out; }
+.animate-slide-in-left-lg { animation: slideInLeft 0.6s ease-out; }
+.animate-slide-in-right { animation: slideInRight 0.4s ease-out; }
+.animate-slide-in-right-lg { animation: slideInRight 0.6s ease-out; }
+.animate-slide-in-top { animation: slideInTop 0.4s ease-out; }
+.animate-scale-in { animation: scaleIn 0.3s ease-out; }
+.animate-scale-in-lg { animation: scaleIn 0.5s ease-out; }
+.animate-bounce-subtle { animation: bounce-subtle 2s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 3s linear infinite; }
+.animate-wiggle { animation: wiggle 1s ease-in-out infinite; }
+.animate-heart-beat { animation: heartBeat 1.3s ease-in-out infinite; }
+.animate-shake { animation: shake 0.5s ease-in-out; }
+.animate-fade-out { animation: fadeOut 0.3s ease-out; }
+.animate-slide-out { animation: slideOut 0.3s ease-out; }
+.animate-pulse-ring { animation: pulse-ring 2s infinite; }
+
+/* Staggered animations */
+.animate-delay-75 { animation-delay: 75ms; }
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-150 { animation-delay: 150ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-500 { animation-delay: 500ms; }
+
 .bg-gradient-animated {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* ====== SMOOTH TRANSITIONS ====== */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-smooth-fast {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-smooth-slow {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ====== LOADING & SHIMMER EFFECTS ====== */
+.loading-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.shimmer-pulse {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ====== FOCUS STATES ====== */
+.focus-ring {
+  @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background;
+}
+
+.focus-ring-inset {
+  @apply outline-none ring-2 ring-inset ring-primary/50 ring-offset-background;
+}
+
+/* ====== GRADIENT ANIMATIONS ====== */
+.gradient-pulse {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary)),
+    hsl(var(--primary) / 0.5),
+    hsl(var(--primary))
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    hsl(var(--primary)),
+    hsl(var(--accent)),
+    hsl(var(--primary))
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* ====== STATUS INDICATORS ====== */
+.status-online {
+  @apply relative;
+}
+
+.status-online::after {
+  content: '';
+  @apply absolute bottom-0 right-0 size-2.5 rounded-full bg-green-500 ring-2 ring-background animate-pulse;
+}
+
+.status-idle::after {
+  content: '';
+  @apply absolute bottom-0 right-0 size-2.5 rounded-full bg-yellow-500 ring-2 ring-background animate-pulse;
+}
+
+.status-offline::after {
+  content: '';
+  @apply absolute bottom-0 right-0 size-2.5 rounded-full bg-gray-500 ring-2 ring-background;
+}
+
+.status-dnd::after {
+  content: '';
+  @apply absolute bottom-0 right-0 size-2.5 rounded-full bg-red-500 ring-2 ring-background animate-pulse;
+}
+
+/* ====== MESSAGE & CHAT ANIMATIONS ====== */
+.message-enter {
+  animation: slideIn 0.2s ease-out;
+}
+
+.message-exit {
+  animation: slideOut 0.2s ease-out;
+}
+
+.reaction-pop {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reaction-explode {
+  animation: heartBeat 0.6s ease-out;
+}
+
+.channel-active {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.channel-highlight {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ====== MODAL & DIALOG ANIMATIONS ====== */
+.modal-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  animation: slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-content-scale {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-backdrop {
+  animation: fadeIn 0.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+/* ====== BUTTON & INTERACTION ANIMATIONS ====== */
+.btn-hover-lift {
+  @apply transition-smooth hover:translate-y-[-2px] hover:shadow-lg;
+}
+
+.btn-hover-scale {
+  @apply transition-smooth hover:scale-105;
+}
+
+.btn-hover-glow {
+  @apply transition-smooth hover:shadow-lg hover:shadow-primary/50;
+}
+
+.btn-active-press {
+  @apply transition-smooth active:scale-95;
+}
+
+.btn-pulse {
+  animation: pulse-ring 2s infinite;
+}
+
+/* ====== TEXT EFFECTS ====== */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--accent)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ====== SCROLLBAR STYLING ====== */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary) / 0.5);
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* ====== CONTAINER ANIMATIONS ====== */
+.fade-enter-active {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fade-exit-active {
+  animation: fadeOut 0.3s ease-out;
+}
+
+.slide-enter-active {
+  animation: slideIn 0.4s ease-out;
+}
+
+.slide-exit-active {
+  animation: slideOut 0.4s ease-out;
+}
+
+/* ====== UTILITY SPACING WITH ANIMATIONS ====== */
+.animate-in {
+  @apply animate-fade-in;
+}
+
+.animate-out {
+  @apply animate-fade-out;
 }
