@@ -167,10 +167,8 @@ export function MessageItem({
 
         {message.attachments && message.attachments.length > 0 && (
           <div className="mt-1.5 flex flex-col gap-2">
-            {message.attachments.map((a, i) => (
-              <div key={a.id} className={cn('animate-slide-in', `animate-delay-${i * 100}`)}>
-                <AttachmentView attachment={a} />
-              </div>
+            {message.attachments.map((a) => (
+              <AttachmentView key={a.id} attachment={a} />
             ))}
           </div>
         )}
@@ -214,14 +212,11 @@ export function MessageItem({
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="min-w-0 animate-scale-in">
             <div className="grid grid-cols-4 gap-1 p-1">
-              {EMOJIS.map((emoji, i) => (
+              {EMOJIS.map((emoji) => (
                 <button
                   key={emoji}
                   onClick={() => toggleReaction(emoji)}
-                  className={cn(
-                    'flex size-8 items-center justify-center rounded-md text-lg hover:bg-muted transition-smooth hover:scale-110 active:scale-95',
-                    `animate-delay-${i * 50}`,
-                  )}
+                  className="flex size-8 items-center justify-center rounded-md text-lg hover:bg-muted transition-smooth hover:scale-110 active:scale-95"
                 >
                   {emoji}
                 </button>
