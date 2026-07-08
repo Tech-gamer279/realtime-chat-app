@@ -39,7 +39,7 @@ function AttachmentView({ attachment }: { attachment: Attachment }) {
       <img
         src={attachment.url || '/placeholder.svg'}
         alt={attachment.file_name ?? 'image'}
-        className="max-h-80 max-w-sm rounded-lg border border-border/60 object-cover"
+        className="max-h-80 max-w-sm rounded-lg border border-border/60 object-cover animate-scale-in"
       />
     )
   }
@@ -49,13 +49,13 @@ function AttachmentView({ attachment }: { attachment: Attachment }) {
       <video
         controls
         src={attachment.url}
-        className="max-h-80 max-w-sm rounded-lg border border-border/60"
+        className="max-h-80 max-w-sm rounded-lg border border-border/60 animate-scale-in"
       />
     )
   }
 
   if (type.startsWith('audio/')) {
-    return <audio controls src={attachment.url} className="w-72 max-w-full" />
+    return <audio controls src={attachment.url} className="w-72 max-w-full animate-fade-in" />
   }
 
   return (
@@ -63,7 +63,7 @@ function AttachmentView({ attachment }: { attachment: Attachment }) {
       href={attachment.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex max-w-sm items-center gap-3 rounded-lg border border-border/60 bg-card p-3 transition-colors hover:border-primary/50"
+      className="flex max-w-sm items-center gap-3 rounded-lg border border-border/60 bg-card p-3 transition-smooth hover:border-primary/50 hover:bg-card/80 hover:shadow-lg animate-slide-in"
     >
       <span className="flex size-10 items-center justify-center rounded-lg bg-primary/15 text-primary">
         <FileText className="size-5" />
@@ -130,7 +130,7 @@ export function MessageItem({
   return (
     <div
       className={cn(
-        'group relative flex gap-3 px-4 py-0.5 hover:bg-muted/30',
+        'group relative flex gap-3 px-4 py-0.5 hover:bg-muted/30 transition-smooth message-enter',
         grouped ? 'mt-0' : 'mt-3',
       )}
       onMouseEnter={() => setHovered(true)}
@@ -138,7 +138,7 @@ export function MessageItem({
     >
       <div className="w-10 shrink-0">
         {!grouped && (
-          <Avatar className="size-10">
+          <Avatar className="size-10 ring-2 ring-primary/20">
             {profile?.avatar_url && (
               <AvatarImage src={profile.avatar_url} alt="" />
             )}
@@ -167,8 +167,10 @@ export function MessageItem({
 
         {message.attachments && message.attachments.length > 0 && (
           <div className="mt-1.5 flex flex-col gap-2">
-            {message.attachments.map((a) => (
-              <AttachmentView key={a.id} attachment={a} />
+            {message.attachments.map((a, i) => (
+              <div key={a.id} className={cn('animate-slide-in', `animate-delay-${i * 100}`)}>
+                <AttachmentView attachment={a} />
+              </div>
             ))}
           </div>
         )}
@@ -180,10 +182,10 @@ export function MessageItem({
                 key={emoji}
                 onClick={() => toggleReaction(emoji)}
                 className={cn(
-                  'flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs transition-colors',
+                  'flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs transition-smooth reaction-pop hover:scale-110',
                   info.mine
                     ? 'border-primary/60 bg-primary/15 text-foreground'
-                    : 'border-border/60 bg-muted/50 text-muted-foreground hover:border-primary/40',
+                    : 'border-border/60 bg-muted/50 text-muted-foreground hover:border-primary/40 hover:bg-muted/70',
                 )}
               >
                 <span>{emoji}</span>
@@ -197,26 +199,29 @@ export function MessageItem({
       {/* Hover actions */}
       <div
         className={cn(
-          'absolute -top-3 right-4 flex items-center gap-0.5 rounded-lg border border-border/60 bg-card p-0.5 shadow-lg transition-opacity',
-          hovered ? 'opacity-100' : 'pointer-events-none opacity-0',
+          'absolute -top-3 right-4 flex items-center gap-0.5 rounded-lg border border-border/60 bg-card p-0.5 shadow-lg transition-all duration-200',
+          hovered ? 'opacity-100 scale-100' : 'pointer-events-none opacity-0 scale-95',
         )}
       >
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-muted hover:text-foreground"
+              className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-smooth hover:bg-muted hover:text-foreground hover:scale-110 active:scale-95"
               aria-label="Add reaction"
             >
               <SmilePlus className="size-4" />
             </button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="min-w-0">
+          <DropdownMenuContent align="end" className="min-w-0 animate-scale-in">
             <div className="grid grid-cols-4 gap-1 p-1">
-              {EMOJIS.map((emoji) => (
+              {EMOJIS.map((emoji, i) => (
                 <button
                   key={emoji}
                   onClick={() => toggleReaction(emoji)}
-                  className="flex size-8 items-center justify-center rounded-md text-lg hover:bg-muted"
+                  className={cn(
+                    'flex size-8 items-center justify-center rounded-md text-lg hover:bg-muted transition-smooth hover:scale-110 active:scale-95',
+                    `animate-delay-${i * 50}`,
+                  )}
                 >
                   {emoji}
                 </button>
@@ -228,7 +233,7 @@ export function MessageItem({
         {isOwn && (
           <button
             onClick={handleDelete}
-            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive/15 hover:text-destructive"
+            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-destructive/15 hover:text-destructive transition-smooth hover:scale-110 active:scale-95"
             aria-label="Delete message"
           >
             <Trash2 className="size-4" />
